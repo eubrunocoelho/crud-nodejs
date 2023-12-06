@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('partials/head.ejs', { title: 'Book Collection - Minha coleção de livros' }) %>
+<body>
+    <main class="container">
+        <section class="content">
+            <%- include('partials/header.ejs') %>
+            <%- include('partials/heading.ejs', { title: 'Minha coleção'}) %>
+            <div class="table-wrapper mt--20">
+                <table class="table">
+                    <tr>
+                        <th class="tc--w50">ID</th>
+                        <th class="f--1">Título</th>
+                        <th class="tc--w92">Status</th>
+                        <th colspan="2" class="tc--w184">Ações</th>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">6</td>
+                        <td class="f--1"><a href="#">PHP e MySQL</a></td>
+                        <td class="tc--w92 text--success"><i class="fa-solid fa-circle-check icon"></i>Já Li</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">5</td>
+                        <td class="f--1"><a href="#">CakePHP</a></td>
+                        <td class="tc--w92 text--muted"><i class="fa-solid fa-circle-xmark icon"></i>Vou Ler</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">4</td>
+                        <td class="f--1"><a href="#">Estrutura de Dados</a></td>
+                        <td class="tc--w92 text--muted"><i class="fa-solid fa-circle-xmark icon"></i>Vou Ler</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">3</td>
+                        <td class="f--1"><a href="#">Java 9</a></td>
+                        <td class="tc--w92 text--muted"><i class="fa-solid fa-circle-xmark icon"></i>Vou Ler</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">2</td>
+                        <td class="f--1"><a href="#">HTML5 e CSS3</a></td>
+                        <td class="tc--w92 text--muted"><i class="fa-solid fa-circle-xmark icon"></i>Vou Ler</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td class="tc--w50">1</td>
+                        <td class="f--1"><a href="#">Web Mobile</a></td>
+                        <td class="tc--w92 text--muted"><i class="fa-solid fa-circle-xmark icon"></i>Vou Ler</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button-wrapper mt--20">
+                <button class="button"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
+            </div>
+        </section>
+        <section class="pagination">
+            <ul>
+                <li>
+                    <span>«</span>
+                </li>
+                <li>
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">»</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
