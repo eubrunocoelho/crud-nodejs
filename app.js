@@ -1,5 +1,6 @@
 import express from 'express';
 import db from './src/db.js';
+import books from './src/Controllers/books.js';
 
 const app = express();
 const PORT = 3000;
@@ -10,8 +11,8 @@ app.set('views', './views');
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/', async (req, res) => {
+    await books.findAll(req, res);
 });
 
 app.get('/register', (req, res) => {
@@ -19,7 +20,7 @@ app.get('/register', (req, res) => {
 });
 
 db.sync(() => {
-    console.log('OK');
+    console.log(`Database connected: ${process.env.DB_NAME}`);
 });
 
 app.listen(PORT, () => {
