@@ -27,6 +27,13 @@
                         <button class="button" type="submit"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
                     </div>
                 </form>
+                <% if (errors) { 
+                    errors.forEach(error => { %>
+                        <div class="alert alert--danger mt--20">
+                            <p><%= error.msg %></p>
+                        </div>
+                    <% });
+                } %>
             </div>
         </section>
     </main>

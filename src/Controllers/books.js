@@ -10,7 +10,7 @@ async function addBook(req, res) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        return res.json({ errors: errors.array() });
+        return res.render('register', { errors: errors.array() });
     }
 }
 
