@@ -1,3 +1,4 @@
+import { validationResult } from 'express-validator';
 import BookRepository from '../Models/booksModel.js';
 
 async function findAll(req, res) {
@@ -5,4 +6,12 @@ async function findAll(req, res) {
     return res.render('index', { books });
 }
 
-export default { findAll };
+async function addBook(req, res) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.json({ errors: errors.array() });
+    }
+}
+
+export default { findAll, addBook };
