@@ -3,7 +3,7 @@ import BookRepository from '../Models/booksModel.js';
 
 async function findAll(req, res) {
     const books = await BookRepository.findAll();
-    return res.render('index', { books });
+    return res.render('index', { books, messages: req.flash('success') });
 }
 
 async function addBook(req, res) {
@@ -21,7 +21,8 @@ async function addBook(req, res) {
         status: req.body.status
     })
         .then((result) => {
-            res.json(result)
+            req.flash('success', 'Livro adicionado com sucesso!');
+            res.redirect('/');
         });
 }
 
