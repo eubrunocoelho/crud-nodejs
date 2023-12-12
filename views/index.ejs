@@ -16,6 +16,7 @@
             <% } %>
             <%- include('partials/heading.ejs', { title: 'Minha coleção'}) %>
             <div class="table-wrapper mt--20">
+                <% if (books.length > 0) { %>
                 <table class="table">
                     <tr>
                         <th class="tc--w50">ID</th>
@@ -23,18 +24,21 @@
                         <th class="tc--w92">Status</th>
                         <th colspan="2" class="tc--w184">Ações</th>
                     </tr>
-                    <% if (books.length > 0) { %>
-                        <% books.forEach((book) => { %>
-                        <tr>
-                            <td class="tc--w50"><%= book.id %></td>
-                            <td class="f--1"><a href="#"><%= book.title %></a></td>
-                            <td class="tc--w92 text--success"><i class="fa-solid fa-circle-check icon"></i>Já Li</td>
-                            <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
-                            <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
-                        </tr>
-                        <% }); %>
-                    <% } %>
+                    <% books.forEach((book) => { %>
+                    <tr>
+                        <td class="tc--w50"><%= book.id %></td>
+                        <td class="f--1"><a href="#"><%= book.title %></a></td>
+                        <td class="tc--w92 text--success"><i class="fa-solid fa-circle-check icon"></i>Já Li</td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                    </tr>
+                    <% }); %>
                 </table>
+                <% } else { %>
+                    <div class="alert alert--warning">
+                        <p>Nenhum livro cadastrado.</p>
+                    </div>
+                <% } %>
             </div>
             <div class="button-wrapper mt--20">
                 <button class="button"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
