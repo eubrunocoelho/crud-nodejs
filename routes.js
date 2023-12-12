@@ -9,7 +9,7 @@ routes.get('/', async (req, res) => {
 });
 
 routes.get('/register', (req, res) => {
-    res.render('register', { errors: null });
+    res.render('register', { errors: null, title: null, description: null, status: null });
 });
 
 routes.post('/register', [

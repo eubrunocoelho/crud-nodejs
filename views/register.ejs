@@ -10,30 +10,30 @@
                 <form action="/register" method="POST">
                     <div class="form-control">
                         <label for="title">Título:</label>
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" id="title" value="<%= title || '' %>">
                     </div>
                     <div class="form-control">
                         <label for="description">Descrição:</label>
-                        <textarea name="description" id="description"></textarea>
+                        <textarea name="description" id="description"><%= description || '' %></textarea>
                     </div>
                     <div class="form-control">
                         <label for="status">Status:</label>
                         <select name="status" id="status">
-                            <option value="1">Já Li</option>
-                            <option value="2">Vou Ler</option>
+                            <option value="1" <%= (status == 1) ? 'selected' : '' %>>Já Li</option>
+                            <option value="2" <%= (status == 2) ? 'selected' : '' %>>Vou Ler</option>
                         </select>
                     </div>
                     <div class="button-wrapper mt--20">
                         <button class="button" type="submit"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
                     </div>
                 </form>
-                <% if (errors) { 
-                    errors.forEach(error => { %>
-                        <div class="alert alert--danger mt--20">
-                            <p><%= error.msg %></p>
-                        </div>
-                    <% });
-                } %>
+                <% if (errors ) { %>
+                    <% errors.forEach((error) => {%>
+                    <div class="alert alert--danger mt--20">
+                        <p><%= error.msg %></p>
+                    </div>
+                    <% }); %>
+                <% } %>
             </div>
         </section>
     </main>

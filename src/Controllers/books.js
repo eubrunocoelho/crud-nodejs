@@ -7,10 +7,12 @@ async function findAll(req, res) {
 }
 
 async function addBook(req, res) {
-    const errors = validationResult(req);
+    const
+        errors = validationResult(req),
+        { title, description, status } = req.body;
 
     if (!errors.isEmpty()) {
-        return res.render('register', { errors: errors.array() });
+        return res.render('register', { errors: errors.array(), title, description, status });
     }
 }
 
