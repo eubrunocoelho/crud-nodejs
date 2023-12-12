@@ -13,8 +13,24 @@ routes.get('/register', (req, res) => {
 });
 
 routes.post('/register', [
-    body('title').notEmpty().withMessage('O campo "título" é obrigatório.'),
-    body('status').notEmpty().withMessage('O campo "status" é obrigatório.')
+    body('title')
+        .notEmpty()
+        .withMessage('O campo "título" é obrigatório.'),
+
+    body('title')
+        .trim()
+        .isLength({ min: 3, max: 255 })
+        .withMessage('O campo "título" deve ter entre 3 e 255 caracteres.'),
+
+    body('description')
+        .optional({ nullable: true })
+        .trim()
+        .isLength({ max: 65535 })
+        .withMessage('O campo "descrição" excede o tamanho permitido.'),
+
+    body('status')
+        .notEmpty()
+        .withMessage('O campo "status" é obrigatório.')
 ], async (req, res) => {
     await books.addBook(req, res);
 })
