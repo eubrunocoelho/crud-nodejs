@@ -14,6 +14,15 @@ async function addBook(req, res) {
     if (!errors.isEmpty()) {
         return res.render('register', { errors: errors.array(), title, description, status });
     }
+
+    BookRepository.create({
+        title: req.body.title,
+        description: req.body.description,
+        status: req.body.status
+    })
+        .then((result) => {
+            res.json(result)
+        });
 }
 
 export default { findAll, addBook };
