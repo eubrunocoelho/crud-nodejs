@@ -2,7 +2,14 @@ import { validationResult } from 'express-validator';
 import BookRepository from '../Models/booksModel.js';
 
 async function findAll(req, res) {
-    const books = await BookRepository.findAll();
+    const books = await BookRepository.findAll(
+        {
+            order: [
+                ['id', 'desc']
+            ]
+        }
+    );
+    
     return res.render('index', { books, messages: req.flash('success') });
 }
 
