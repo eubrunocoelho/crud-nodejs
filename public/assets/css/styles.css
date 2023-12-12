@@ -129,6 +129,10 @@ body {
     gap: 20px;
 }
 
+.mb--20 {
+    margin-bottom: 20px !important;
+}
+
 .mt--20 {
     margin-top: 20px !important;
 }
