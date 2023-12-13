@@ -27,10 +27,10 @@
                     <% books.forEach((book) => { %>
                     <tr>
                         <td class="tc--w50"><%= book.id %></td>
-                        <td class="f--1"><a href="#"><%= book.title %></a></td>
-                        <td class="tc--w92 text--success"><i class="fa-solid fa-circle-check icon"></i>Já Li</td>
-                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="#" class="text--warning">Editar</a></td>
-                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="#" class="text--danger">Excluir</a></td>
+                        <td class="f--1"><a href="/view/<%= book.id %>"><%= book.title %></a></td>
+                        <td class="tc--w92 text--<%= book.status ? 'success' : 'muted' %>"><i class="fa-solid fa-circle-<%= book.status ? 'check' : 'xmark' %> icon"></i><%= book.status ? 'Já Li' : 'Vou Ler' %></td>
+                        <td class="tc--w92 text--warning"><i class="fa-solid fa-marker icon"></i><a href="/edit/<%= book.id %>" class="text--warning">Editar</a></td>
+                        <td class="tc--w92 text--danger"><i class="fa-solid fa-trash icon"></i><a href="/delete/<%= book.id %>" class="text--danger">Excluir</a></td>
                     </tr>
                     <% }); %>
                 </table>
@@ -41,7 +41,7 @@
                 <% } %>
             </div>
             <div class="button-wrapper mt--20">
-                <button class="button"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
+                <button class="button" onclick="window.location.href='/register';"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
             </div>
         </section>
         <section class="pagination">
