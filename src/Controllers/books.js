@@ -9,8 +9,8 @@ async function findAll(req, res) {
             ]
         }
     );
-    
-    return res.render('index', { books, messages: req.flash('success') });
+
+    return res.render('index', { books, message: { success: req.flash('success'), danger: req.flash('danger') } });
 }
 
 async function addBook(req, res) {
@@ -19,7 +19,7 @@ async function addBook(req, res) {
         { title, description, status } = req.body;
 
     if (!errors.isEmpty()) {
-        return res.render('register', { errors: errors.array(), title, description, status });
+        return res.render('register', { errors: errors.array(), title, description, status, message: { success: req.flash('success'), danger: req.flash('danger') } });
     }
 
     BookRepository.create({
@@ -30,6 +30,10 @@ async function addBook(req, res) {
         .then((result) => {
             req.flash('success', 'Livro adicionado com sucesso!');
             res.redirect('/');
+        })
+        .catch((error) => {
+            req.flash('danger', 'Houve um erro interno no sistema.');
+            res.redirect('/register');
         });
 }
 

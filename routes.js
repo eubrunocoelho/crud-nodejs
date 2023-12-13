@@ -9,7 +9,7 @@ routes.get('/', async (req, res) => {
 });
 
 routes.get('/register', (req, res) => {
-    res.render('register', { errors: null, title: null, description: null, status: null });
+    res.render('register', { errors: null, title: null, description: null, status: null, message: { success: req.flash('success'), danger: req.flash('danger') } });
 });
 
 routes.post('/register', [
