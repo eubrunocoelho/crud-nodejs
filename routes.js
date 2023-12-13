@@ -8,8 +8,12 @@ routes.get('/', async (req, res) => {
     await books.findAll(req, res);
 });
 
+routes.get('/view/:id', async (req, res) => {
+    await books.findBook(req, res);
+});
+
 routes.get('/register', (req, res) => {
-    res.render('register', { errors: null, title: null, description: null, status: null, message: { success: req.flash('success'), danger: req.flash('danger') } });
+    return res.render('register', { errors: null, title: null, description: null, status: null, message: { success: req.flash('success'), warning: req.flash('warning'), danger: req.flash('danger') } });
 });
 
 routes.post('/register', [
