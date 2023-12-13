@@ -5,15 +5,7 @@
     <main class="container">
         <section class="content">
             <%- include('partials/header.ejs') %>
-            <% if (messages.length > 0) { %>
-            <div class="content-wrapper mb--20">
-                <% messages.forEach((message) => {  %>
-                <div class="alert alert--success">
-                    <p><%= message %></p>
-                </div>
-                <% }); %>
-            </div>
-            <% } %>
+            <%- include('components/message.ejs') %>
             <%- include('partials/heading.ejs', { title: 'Minha coleção'}) %>
             <div class="table-wrapper mt--20">
                 <% if (books.length > 0) { %>

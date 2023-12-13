@@ -1,0 +1,18 @@
+<% if (message.success.length > 0) { %>
+<div class="content-wrapper mb--20">
+    <% message.success.forEach((message)=> { %>
+    <div class="alert alert--success">
+        <p><%= message %></p>
+    </div>
+    <% }); %>
+</div>
+<% } %>
+<% if (message.danger.length > 0) { %>
+<div class="content-wrapper mb--20">
+    <% message.danger.forEach((message)=> { %>
+    <div class="alert alert--danger">
+        <p><%= message %></p>
+    </div>
+    <% }); %>
+</div>
+<% } %>
