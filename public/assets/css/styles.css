@@ -169,6 +169,10 @@ body {
     color: var(--text-warning-color) !important;
 }
 
+.text--capitalize {
+    text-transform: capitalize !important;
+}
+
 /**
  * =================================================================================
  *  COMPONENTS
