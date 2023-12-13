@@ -114,7 +114,6 @@ body {
 
 .f--1 {
     flex: 1 !important;
-    width: 100%;
 }
 
 .f--ai-center {
@@ -307,6 +306,7 @@ body {
     display: flex;
     justify-content: start;
     padding: 8px 0 8px 0;
+    width: 100%;
 }
 
 .table tr th {
