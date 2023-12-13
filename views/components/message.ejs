@@ -7,6 +7,15 @@
     <% }); %>
 </div>
 <% } %>
+<% if (message.warning.length > 0) { %>
+<div class="content-wrapper mb--20">
+    <% message.warning.forEach((message)=> { %>
+    <div class="alert alert--warning">
+        <p><%= message %></p>
+    </div>
+    <% }); %>
+</div>
+<% } %>
 <% if (message.danger.length > 0) { %>
 <div class="content-wrapper mb--20">
     <% message.danger.forEach((message)=> { %>
