@@ -39,4 +39,8 @@ routes.post('/register', [
     await books.addBook(req, res);
 })
 
+routes.get('/edit/:id', async (req, res) => { 
+    await books.editBook(req, res);
+});
+
 export { routes as default };
