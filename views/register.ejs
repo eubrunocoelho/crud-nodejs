@@ -20,8 +20,8 @@
                     <div class="form-control">
                         <label for="status">Status:</label>
                         <select name="status" id="status">
-                            <option value="1" <%= (status) ? 'selected' : '' %>>Já Li</option>
-                            <option value="0" <%= (!status) ? 'selected' : '' %>>Vou Ler</option>
+                            <option value="1" <%= (status == 1) ? 'selected' : '' %>>Já Li</option>
+                            <option value="0" <%= (status == 0) ? 'selected' : '' %>>Vou Ler</option>
                         </select>
                     </div>
                     <div class="button-wrapper mt--20">
