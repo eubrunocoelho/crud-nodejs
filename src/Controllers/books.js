@@ -21,7 +21,7 @@ async function findBook(req, res) {
         return res.redirect('/');
     }
 
-    return res.render('view', { book });
+    return res.render('view', { book, message: { success: req.flash('success'), warning: req.flash('warning'), danger: req.flash('danger') } });
 }
 
 async function addBook(req, res) {
@@ -44,8 +44,57 @@ async function addBook(req, res) {
         })
         .catch((error) => {
             req.flash('danger', 'Houve um erro interno no sistema.');
-            return res.redirect('/register');
+            return res.redirect('/');
         });
 }
 
-export default { findAll, findBook, addBook };
+async function editBook(req, res) {
+    const
+        book = await BookRepository.findByPk(req.params.id);
+
+    if (!book) {
+        req.flash('warning', 'Este livro não está cadastrado.');
+        return res.redirect('/');
+    }
+
+    return res.render('edit', { errors: null, id: book.id, title: book.title, description: book.description, status: book.status, message: { success: req.flash('success'), warning: req.flash('warning'), danger: req.flash('danger') } });
+}
+
+async function updateBook(req, res) {
+    const
+        book = await BookRepository.findByPk(req.params.id),
+        errors = validationResult(req),
+        { title, description, status } = req.body;
+
+    if (!book) {
+        req.flash('danger', 'Houve um erro interno no sistema.');
+        return res.redirect('/');
+    }
+
+    if (!errors.isEmpty()) {
+        return res.render('edit', { errors: errors.array(), id: book.id, title, description, status, message: { success: req.flash('success'), warning: req.flash('warning'), danger: req.flash('danger') } });
+    }
+
+    await BookRepository.update(
+        {
+            title: title,
+            description: description,
+            status: status
+        },
+        {
+            where: {
+                id: book.id
+            }
+        }
+    )
+        .then((result) => {
+            req.flash('success', 'Livro atualizado com sucesso!');
+            return res.redirect('/view/' + book.id);
+        })
+        .catch((error) => {
+            req.flash('danger', 'Houve um erro interno no sistema.');
+            return res.redirect('/');
+        });
+}
+
+export default { findAll, findBook, addBook, editBook, updateBook };
