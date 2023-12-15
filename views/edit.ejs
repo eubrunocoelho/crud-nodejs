@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('partials/head.ejs', { title: 'Book Collection - Minha coleção de livros' }) %>
+<body>
+    <main class="container">
+        <section class="content">
+            <%- include('partials/header.ejs') %>
+            <%- include('components/message.ejs') %>
+            <%- include('partials/heading.ejs', { title: 'Editar Livro: ' + title }) %>
+            <div class="table-wrapper mt--20">
+                <table class="table">
+                    <tr class="f--ai-center">
+                        <th class="tc--w92">Título</th>
+                        <td class="f--1 text--capitalize"><%= title %></td>
+                    </tr>
+                    <tr class="f--ai-center">
+                        <th class="tc--w92">Status</th>
+                        <td class="f--1 text--<%= status ? 'success' : 'muted' %>"><i class="fa-solid fa-circle-<%= status ? 'check' : 'xmark' %> icon"></i><%= status ? 'Já Li' : 'Vou Ler' %></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-wrapper mt--20">
+                <form action="/edit/<%= id %>" method="POST">
+                    <div class="form-control">
+                        <label for="title">Título:</label>
+                        <input type="text" name="title" id="title" value="<%= title || '' %>">
+                    </div>
+                    <div class="form-control">
+                        <label for="description">Descrição:</label>
+                        <textarea name="description" id="description"><%= description || '' %></textarea>
+                    </div>
+                    <div class="form-control">
+                        <label for="status">Status:</label>
+                        <select name="status" id="status">
+                            <option value="1" <%= (status) ? 'selected' : '' %>>Já Li</option>
+                            <option value="0" <%= (!status) ? 'selected' : '' %>>Vou Ler</option>
+                        </select>
+                    </div>
+                    <div class="button-wrapper mt--20">
+                        <button class="button" type="submit"><i class="fa-solid fa-plus icon"></i>Adicionar</button>
+                    </div>
+                </form>
+                <% if (errors ) { %>
+                    <% errors.forEach((error) => { %>
+                    <div class="alert alert--danger mt--20">
+                        <p><%= error.msg %></p>
+                    </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
