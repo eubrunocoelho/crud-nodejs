@@ -39,13 +39,21 @@
         <section class="pagination">
             <ul>
                 <li>
+                    <% if (currentPage > 1) { %>
+                    <a href="?page=<%= Number(currentPage) - 1 %>">«</a>
+                    <% } else { %>
                     <span>«</span>
+                    <% } %>
                 </li>
                 <li>
-                    <a href="#">1</a>
+                    <a href="?page=<%= currentPage %>"><%= currentPage %></a>
                 </li>
                 <li>
-                    <a href="#">»</a>
+                    <% if (currentPage < totalPages) { %>
+                    <a href="?page=<%= Number(currentPage) + 1 %>">»</a>
+                    <% } else { %>
+                    <span>»</span>
+                    <% } %>
                 </li>
             </ul>
         </section>

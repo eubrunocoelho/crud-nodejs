@@ -3,22 +3,32 @@ import BookRepository from '../Models/booksModel.js';
 
 async function findAll(req, res) {
     const
-        books = await BookRepository.findAll(
-            {
-                order: [
-                    ['id', 'desc']
-                ]
-            }
-        );
+        page = req.query.page || 1,
+        pageSize = 2;
 
-    return res.render('index', {
-        books,
-        message: {
-            success: req.flash('success'),
-            warning: req.flash('warning'),
-            danger: req.flash('danger')
+    await BookRepository.findAndCountAll(
+        {
+            limit: pageSize,
+            offset: (page - 1) * pageSize,
+            order: [
+                ['id', 'DESC']
+            ]
         }
-    });
+    )
+        .then(({ count, rows }) => {
+            const totalPages = Math.ceil(count / pageSize);
+
+            res.render('index', {
+                books: rows,
+                totalPages,
+                currentPage: page,
+                message: {
+                    success: req.flash('success'),
+                    warning: req.flash('warning'),
+                    danger: req.flash('danger')
+                }
+            });
+        })
 }
 
 async function findBook(req, res) {
