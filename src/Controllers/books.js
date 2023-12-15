@@ -4,7 +4,7 @@ import BookRepository from '../Models/booksModel.js';
 async function findAll(req, res) {
     const
         page = req.query.page || 1,
-        pageSize = 2;
+        pageSize = 10;
 
     await BookRepository.findAndCountAll(
         {
