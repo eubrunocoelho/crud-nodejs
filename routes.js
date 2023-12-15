@@ -79,4 +79,8 @@ routes.post('/edit/:id', [
     await books.updateBook(req, res);
 });
 
+routes.get('/delete/:id', async (req, res) => {
+    await books.deleteBook(req, res);
+});
+
 export { routes as default };
