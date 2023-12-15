@@ -71,6 +71,7 @@ async function addBook(req, res) {
         })
         .catch((error) => {
             req.flash('danger', 'Houve um erro interno no sistema.');
+            return res.redirect('/');
         });
 }
 
