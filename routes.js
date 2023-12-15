@@ -13,7 +13,20 @@ routes.get('/view/:id', async (req, res) => {
 });
 
 routes.get('/register', (req, res) => {
-    return res.render('register', { errors: null, title: null, description: null, status: null, message: { success: req.flash('success'), warning: req.flash('warning'), danger: req.flash('danger') } });
+    const
+        { title, description, status } = {};
+
+    return res.render('register', {
+        errors: null,
+        title,
+        description,
+        status,
+        message: {
+            success: req.flash('success'),
+            warning: req.flash('warning'),
+            danger: req.flash('danger')
+        }
+    });
 });
 
 routes.post('/register', [
@@ -62,7 +75,7 @@ routes.post('/edit/:id', [
     body('status')
         .notEmpty()
         .withMessage('O campo "status" é obrigatório.')
-], async (req, res) => { 
+], async (req, res) => {
     await books.updateBook(req, res);
 });
 
