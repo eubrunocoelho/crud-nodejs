@@ -122,11 +122,11 @@ body {
 }
 
 .f--fd-column {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .g--20 {
-    gap: 20px;
+    gap: 20px !important;
 }
 
 .mb--20 {
