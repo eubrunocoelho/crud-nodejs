@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('partials/head.ejs', { title: 'Book Collection - Minha coleção de livros' }) %>
+<body>
+    <main class="container">
+        <section class="content">
+            <%- include('partials/header.ejs') %>
+            <%- include('partials/heading.ejs', { title: 'Deletar Livro: ' + book.title }) %>
+            <div class="table-wrapper mt--20">
+                <table class="table">
+                    <tr class="f--ai-center">
+                        <th class="tc--w92">Título</th>
+                        <td class="f--1 text--capitalize"><%= book.title %></td>
+                    </tr>
+                    <tr class="f--ai-center">
+                        <th class="tc--w92">Status</th>
+                        <td class="f--1 text--<%= book.status ? 'success' : 'muted' %>"><i class="fa-solid fa-circle-<%= book.status ? 'check' : 'xmark' %> icon"></i><%= book.status ? 'Já Li' : 'Vou Ler' %></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content-wrapper mt--20">
+                <div class="alert alert--danger">
+                    <p>Você deseja excluir este livro?</p>
+                    <div class="button-wrapper mt--20 g--20">
+                        <button class="button button--danger" onclick="window.location.href='/delete/<%= book.id %>?delete=true';"><i class="fa-solid fa-trash icon"></i>Excluir</button>
+                        <button class="button" onclick="window.location.href='/';"><i class="fa-solid fa-chevron-left icon"></i>Minha Coleção</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
