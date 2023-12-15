@@ -6,21 +6,21 @@
         <section class="content">
             <%- include('partials/header.ejs') %>
             <%- include('components/message.ejs') %>
-            <%- include('partials/heading.ejs', { title: 'Editar Livro: ' + title }) %>
+            <%- include('partials/heading.ejs', { title: 'Editar Livro: ' + book.title }) %>
             <div class="table-wrapper mt--20">
                 <table class="table">
                     <tr class="f--ai-center">
                         <th class="tc--w92">Título</th>
-                        <td class="f--1 text--capitalize"><%= title %></td>
+                        <td class="f--1 text--capitalize"><%= book.title %></td>
                     </tr>
                     <tr class="f--ai-center">
                         <th class="tc--w92">Status</th>
-                        <td class="f--1 text--<%= status ? 'success' : 'muted' %>"><i class="fa-solid fa-circle-<%= status ? 'check' : 'xmark' %> icon"></i><%= status ? 'Já Li' : 'Vou Ler' %></td>
+                        <td class="f--1 text--<%= book.status ? 'success' : 'muted' %>"><i class="fa-solid fa-circle-<%= book.status ? 'check' : 'xmark' %> icon"></i><%= book.status ? 'Já Li' : 'Vou Ler' %></td>
                     </tr>
                 </table>
             </div>
             <div class="form-wrapper mt--20">
-                <form action="/edit/<%= id %>" method="POST">
+                <form action="/edit/<%= book.id %>" method="POST">
                     <div class="form-control">
                         <label for="title">Título:</label>
                         <input type="text" name="title" id="title" value="<%= title || '' %>">
