@@ -26,8 +26,8 @@
                 <p class="description mt--20"><%= book.description %></p>
             </div>
             <div class="button-wrapper mt--20 g--20">
-                <button class="button button--warning"><i class="fa-solid fa-marker icon"></i>Editar</button>
-                <button class="button button--danger"><i class="fa-solid fa-trash icon"></i>Excluir</button>
+                <button class="button button--warning" onclick="window.location.href='/edit/<%= book.id %>';"><i class="fa-solid fa-marker icon"></i>Editar</button>
+                <button class="button button--danger" onclick="window.location.href='/delete/<%= book.id %>';"><i class="fa-solid fa-trash icon"></i>Excluir</button>
             </div>
         </section>
     </main>
