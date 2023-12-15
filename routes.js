@@ -39,8 +39,31 @@ routes.post('/register', [
     await books.addBook(req, res);
 })
 
-routes.get('/edit/:id', async (req, res) => { 
+routes.get('/edit/:id', async (req, res) => {
     await books.editBook(req, res);
+});
+
+routes.post('/edit/:id', [
+    body('title')
+        .notEmpty()
+        .withMessage('O campo "título" é obrigatório.'),
+
+    body('title')
+        .trim()
+        .isLength({ min: 3, max: 255 })
+        .withMessage('O campo "título" deve ter entre 3 e 255 caracteres.'),
+
+    body('description')
+        .optional({ nullable: true })
+        .trim()
+        .isLength({ max: 65535 })
+        .withMessage('O campo "descrição" excede o tamanho permitido.'),
+
+    body('status')
+        .notEmpty()
+        .withMessage('O campo "status" é obrigatório.')
+], async (req, res) => { 
+    await books.updateBook(req, res);
 });
 
 export { routes as default };
