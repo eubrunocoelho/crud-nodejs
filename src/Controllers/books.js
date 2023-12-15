@@ -60,11 +60,13 @@ async function addBook(req, res) {
         });
     }
 
-    BookRepository.create({
-        title: title,
-        description: description,
-        status, status
-    })
+    BookRepository.create(
+        {
+            title: title,
+            description: description,
+            status, status
+        }
+    )
         .then((result) => {
             req.flash('success', 'Livro adicionado com sucesso!');
             return res.redirect('/view/' + result.id);
@@ -151,4 +153,29 @@ async function updateBook(req, res) {
         });
 }
 
-export default { findAll, findBook, addBook, editBook, updateBook };
+async function deleteBook(req, res) {
+    const
+        book = await BookRepository.findByPk(req.params.id);
+
+    if (!book) {
+        req.flash('warning', 'Este livro não está cadastrado.');
+        return res.redirect('/');
+    }
+
+    if (req.query.delete == 'true') {
+        await BookRepository.destroy(
+            {
+                where: {
+                    id: book.id
+                }
+            }
+        );
+
+        req.flash('success', 'Livro excluído com sucesso!');
+        return res.redirect('/');
+    }
+
+    return res.render('delete', { book });
+}
+
+export default { findAll, findBook, addBook, editBook, updateBook, deleteBook };
