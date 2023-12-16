@@ -12,21 +12,8 @@ routes.get('/view/:id', async (req, res) => {
     await books.findBook(req, res);
 });
 
-routes.get('/register', (req, res) => {
-    const
-        { title, description, status } = {};
-
-    return res.render('register', {
-        errors: null,
-        title,
-        description,
-        status,
-        message: {
-            success: req.flash('success'),
-            warning: req.flash('warning'),
-            danger: req.flash('danger')
-        }
-    });
+routes.get('/register', async (req, res) => {
+    await books.addBook(req, res);
 });
 
 routes.post('/register', [
@@ -49,7 +36,7 @@ routes.post('/register', [
         .notEmpty()
         .withMessage('O campo "status" é obrigatório.')
 ], async (req, res) => {
-    await books.addBook(req, res);
+    await books.storeBook(req, res);
 })
 
 routes.get('/edit/:id', async (req, res) => {

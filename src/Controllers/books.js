@@ -3,8 +3,12 @@ import BookRepository from '../Models/booksModel.js';
 
 async function findAll(req, res) {
     const
-        page = req.query.page || 1,
+        page = parseInt(req.query.page, 10) || 1,
         pageSize = 10;
+
+    if (typeof page !== 'number' || page === 0) {
+        return res.redirect('/');
+    }
 
     await BookRepository.findAndCountAll(
         {
@@ -18,6 +22,10 @@ async function findAll(req, res) {
         .then(({ count, rows }) => {
             const totalPages = Math.ceil(count / pageSize);
 
+            if (page > totalPages) {
+                return res.redirect('/');
+            }
+
             res.render('index', {
                 books: rows,
                 totalPages,
@@ -29,6 +37,9 @@ async function findAll(req, res) {
                 }
             });
         })
+        .catch((error) => {
+            return res.json(error);
+        });
 }
 
 async function findBook(req, res) {
@@ -52,6 +63,23 @@ async function findBook(req, res) {
 }
 
 async function addBook(req, res) {
+    const
+        { title, description, status } = {};
+
+    return res.render('register', {
+        errors: null,
+        title,
+        description,
+        status,
+        message: {
+            success: req.flash('success'),
+            warning: req.flash('warning'),
+            danger: req.flash('danger')
+        }
+    });
+}
+
+async function storeBook(req, res) {
     const
         errors = validationResult(req),
         { title, description, status } = req.body;
@@ -179,13 +207,18 @@ async function deleteBook(req, res) {
                     id: book.id
                 }
             }
-        );
-
-        req.flash('success', 'Livro excluído com sucesso!');
-        return res.redirect('/');
+        )
+            .then((result) => {
+                req.flash('success', 'Livro excluído com sucesso!');
+                return res.redirect('/');
+            })
+            .catch((error) => {
+                req.flash('danger', 'Houve um erro interno no sistema.');
+                return res.redirect('/');
+            });
     }
 
     return res.render('delete', { book });
 }
 
-export default { findAll, findBook, addBook, editBook, updateBook, deleteBook };
+export default { findAll, findBook, addBook, storeBook, editBook, updateBook, deleteBook };
