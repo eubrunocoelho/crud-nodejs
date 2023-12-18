@@ -70,12 +70,7 @@ async function addBook(req, res) {
         errors: null,
         title,
         description,
-        status,
-        message: {
-            success: req.flash('success'),
-            warning: req.flash('warning'),
-            danger: req.flash('danger')
-        }
+        status
     });
 }
 
@@ -89,12 +84,7 @@ async function storeBook(req, res) {
             errors: errors.array(),
             title,
             description,
-            status,
-            message: {
-                success: req.flash('success'),
-                warning: req.flash('warning'),
-                danger: req.flash('danger')
-            }
+            status
         });
     }
 
@@ -132,12 +122,7 @@ async function editBook(req, res) {
         errors: null,
         title,
         description,
-        status,
-        message: {
-            success: req.flash('success'),
-            warning: req.flash('warning'),
-            danger: req.flash('danger')
-        }
+        status
     });
 }
 
@@ -160,12 +145,7 @@ async function updateBook(req, res) {
             errors: errors.array(),
             title,
             description,
-            status,
-            message: {
-                success: req.flash('success'),
-                warning: req.flash('warning'),
-                danger: req.flash('danger')
-            }
+            status
         });
     }
 
