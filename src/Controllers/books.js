@@ -92,7 +92,7 @@ async function storeBook(req, res) {
         {
             title: title,
             description: description,
-            status, status
+            status: status
         }
     )
         .then((result) => {
